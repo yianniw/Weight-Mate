@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AddMealActvitiy extends AppCompatActivity {
+public class AddMealActivity extends AppCompatActivity {
 
     EditText mealname;
     EditText itemname;
@@ -34,7 +34,7 @@ public class AddMealActvitiy extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_meal_actvitiy);
+        setContentView(R.layout.activity_add_meal);
 
         //EditTexts
         mealname = findViewById(R.id.mealnametext);
