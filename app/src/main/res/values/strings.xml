@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">Weight Mate</string>
+  
+    <string-array name = "Goals">
+        <item>Maintain Weight</item>
+        <item>Lose Weight</item>
+        <item>Gain Weight</item>
+    </string-array>
 
     <string name="profile_name">Toby Flenderson</string>
     <string name="profile_weight_current">Weight:</string>
