@@ -3,16 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@android:color/holo_blue_light">
+    android:orientation="vertical" >
 
     <ImageButton
         android:id="@+id/profile_image"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        app:srcCompat="@android:drawable/ic_menu_gallery" />
+        android:layout_alignParentTop="true" />
 
     <LinearLayout
         android:layout_width="291dp"
@@ -121,8 +119,10 @@
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="3dp"
         android:layout_below="@+id/profile_image"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:background="?android:attr/listDivider" />
@@ -131,67 +131,46 @@
         android:layout_width="match_parent"
         android:layout_height="539dp"
         android:layout_alignTop="@+id/divider"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginTop="5dp"
-        android:background="@android:color/holo_blue_dark">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <TableLayout
+            <Button
+                android:id="@+id/profile_stats"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="100dp"
+                android:text="@string/profile_stats" />
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
-
-                    <Button
-                        android:id="@+id/profile_goals"
-                        android:layout_width="wrap_content"
-                        android:layout_height="100dp"
-                        android:layout_weight="1"
-                        android:text="@string/profile_goals"
-                        android:backgroundTint="@android:color/holo_blue_bright" />
-
-                    <Button
-                        android:id="@+id/profile_stats"
-                        android:layout_width="wrap_content"
-                        android:layout_height="100dp"
-                        android:layout_weight="1"
-                        android:text="@string/profile_stats"
-                        android:backgroundTint="@android:color/holo_green_light" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <Button
-                        android:id="@+id/profile_log_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="100dp"
-                        android:layout_weight="1"
-                        android:text="@string/profile_log_view"
-                        android:backgroundTint="@android:color/holo_orange_light" />
-
-                    <Button
-                        android:id="@+id/profile_log_edit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="100dp"
-                        android:layout_weight="1"
-                        android:text="@string/profile_log_edit"
-                        android:backgroundTint="@android:color/holo_orange_dark" />
-                </TableRow>
-
-            </TableLayout>
-
-            <Space
+            <Button
+                android:id="@+id/profile_goals"
                 android:layout_width="match_parent"
-                android:layout_height="100dp" />
+                android:layout_height="100dp"
+                android:text="@string/profile_goals" />
+
+            <Button
+                android:id="@+id/profile_log_view"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="@string/profile_log_view" />
+
+            <Button
+                android:id="@+id/profile_log_edit"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="@string/profile_log_edit" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="?android:attr/listDivider" />
 
             <Button
                 android:id="@+id/profile_settings"
