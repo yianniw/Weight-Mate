@@ -3,6 +3,7 @@ package edu.fsu.cs.weightmate;
 import androidx.appcompat.app.AppCompatActivity;
 import java.lang.Math;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
@@ -11,6 +12,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //startProfile();
+    }
+
+    // test function to launch ProfileActivity
+    private void startProfile() {
+        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+        startActivity(intent);
     }
 
 

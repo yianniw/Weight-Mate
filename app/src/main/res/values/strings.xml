@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">Weight Mate</string>
+  
+    <string-array name = "Goals">
+        <item>Maintain Weight</item>
+        <item>Lose Weight</item>
+        <item>Gain Weight</item>
+    </string-array>
+
+    <string name="profile_name">Toby Flenderson</string>
+    <string name="profile_weight_current">Weight:</string>
+    <string name="profile_weight_placeholder">150.0</string>
+    <string name="profile_weight_goal">Goal:</string>
+    <string name="profile_start_date">Start Date:</string>
+    <string name="profile_date_placeholder">01/01/1970</string>
+
+    <string name="profile_goals">Goal Tracker</string>
+    <string name="profile_stats">Stats</string>
+    <string name="profile_log_view">View Meal Log</string>
+    <string name="profile_log_edit">Edit Meal Log</string>
+
+
+    <string name="profile_settings">Settings</string>
+    <string name="profile_logout">Logout</string>
+
+    <string name="units_freedom">lbs</string>
+    <string name="units_metric">kgs</string>
+    <string name="edit">Edit</string>
+
 </resources>
