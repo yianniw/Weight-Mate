@@ -112,6 +112,5 @@ public class MainActivity extends AppCompatActivity {
         int proteinGrams = (int) Math.ceil(protein / 4);
         int fatGrams = (int) Math.ceil(fat / 9);
 
-
     }
 }
