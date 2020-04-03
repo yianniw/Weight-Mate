@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
         //startProfile();
     }
 
+    // test function to launch ProfileActivity
     private void startProfile() {
         Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
         startActivity(intent);
