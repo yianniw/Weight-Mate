@@ -14,11 +14,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //startProfile();
+        //startListMeal();
     }
 
     // test function to launch ProfileActivity
     private void startProfile() {
         Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+        startActivity(intent);
+    }
+    //Function to switch to AddMealActivity for development purposes
+    private void startAddMeal(){
+        Intent intent = new Intent(MainActivity.this, AddMealActivity.class);
+        startActivity(intent);
+    }
+
+    //Function to switch to ListMealActivity for development purposes
+    private void startListMeal(){
+        Intent intent = new Intent(MainActivity.this, ListMealActivity.class);
         startActivity(intent);
     }
 
