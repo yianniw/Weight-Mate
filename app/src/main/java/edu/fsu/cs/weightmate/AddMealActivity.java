@@ -2,6 +2,9 @@ package edu.fsu.cs.weightmate;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -47,6 +50,9 @@ public class AddMealActivity extends AppCompatActivity {
         totalcalories = findViewById(R.id.totalcaloryview);
         totalprotein = findViewById(R.id.totalproteinview);
         totalcarbs = findViewById(R.id.totalcarbview);
+        totalcarbs.setText("0.0");
+        totalprotein.setText("0.0");
+        totalcalories.setText("0.0");
 
         //Spinner
         spinner= findViewById(R.id.spinner);
@@ -74,7 +80,7 @@ public class AddMealActivity extends AppCompatActivity {
 
 
     public void addbtn(View v) {
-        Log.d("lol","addbtn");
+        Log.d("dbd","addbtn");
         items.add("New Item");
         adapter.notifyDataSetChanged();
         //adapter.notifyDataSetChanged();
@@ -82,7 +88,7 @@ public class AddMealActivity extends AppCompatActivity {
     }
 
     public void deletebtn(View v){
-        Log.d("lol","deletebtn");
+        Log.d("dbd","deletebtn");
         if(items.size() > 1){
             items.remove(spinner.getSelectedItemPosition());
             adapter.notifyDataSetChanged();
@@ -90,7 +96,63 @@ public class AddMealActivity extends AppCompatActivity {
     }
 
     public void finishmealbtn(View v){
-        Log.d("lol","finishmealbtn");
+        Log.d("dbd","finishmealbtn");
+
+        ContentValues values = new ContentValues();
+        //employee id, name, email, gender, passwd, department
+        values.put("username","Toby");
+        values.put("day","April 1");
+        //values.put("mealname", mealname.getText().toString());
+        //values.put("calories",Double.parseDouble(totalcalories.getText().toString()));
+        //values.put("protein",Double.parseDouble(totalprotein.getText().toString()));
+        //values.put("carbs",Double.parseDouble(totalcarbs.getText().toString()));
+        //values.put("fat",0.0);
+        values.put("mealname", "meal 1");
+        values.put("calories",0.0);
+        values.put("protein",0.0);
+        values.put("carbs",0.0);
+        values.put("fat",0.0);
+
+        Uri inserturi = getContentResolver().insert(MyContentProvider.CONTENT_URI_MEAL,values);
+
+        ContentValues values2 = new ContentValues();
+        //employee id, name, email, gender, passwd, department
+        values2.put("username","Gio");
+        values2.put("day","April 5");
+        values2.put("mealname", "meal 2");
+        values2.put("calories",0.0);
+        values2.put("protein",0.0);
+        values2.put("carbs",0.0);
+        values2.put("fat",0.0);
+
+        inserturi = getContentResolver().insert(MyContentProvider.CONTENT_URI_MEAL,values2);
+
+        String mSelectionClause = MyContentProvider.COLUMN_USERNAME2 + " = ? ";
+        String[] mSelectionArgs = { "Toby" };
+        int mRowsDeleted2 = getContentResolver().delete(MyContentProvider.CONTENT_URI_MEAL, mSelectionClause, mSelectionArgs);
+
+        Cursor mCursor = getContentResolver().query(MyContentProvider.CONTENT_URI_MEAL, null, null, null, null);
+        if(mCursor == null){
+            Log.d("dbd","cursor is null");
+        }
+        else{
+            while(mCursor.moveToNext()) {
+                //Log.d("dbd",Integer.toString(mCursor.getColumnNames().length));
+                Log.d("dbd","cursor next");
+                Log.d("dbd",mCursor.getString(1));
+                Log.d("dbd",mCursor.getString(2));
+                Log.d("dbd",mCursor.getString(3));
+                Log.d("dbd",Double.toString(mCursor.getDouble(4)));
+                Log.d("dbd",Double.toString(mCursor.getDouble(5)));
+                Log.d("dbd",Double.toString(mCursor.getDouble(6)));
+                Log.d("dbd",Double.toString(mCursor.getDouble(7)));
+
+            }
+        }
+        //String mSelectionClause = MyContentProvider.COLUMN_EMPLOYEEID + " = ? ";
+        //String[] mSelectionArgs = { employeeid.trim() };
+        int mRowsDeleted = 0;
+        mRowsDeleted = getContentResolver().delete(MyContentProvider.CONTENT_URI_MEAL, null, null);
     }
 
 }
