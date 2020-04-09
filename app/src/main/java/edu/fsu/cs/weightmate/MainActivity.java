@@ -5,13 +5,14 @@ import java.lang.Math;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.landing_page);
 
         //startProfile();
         //startLogin();
@@ -28,6 +29,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, LoginPage.class);
         startActivity(intent);
     }
+
+    public void startSignUp(View v) {
+        Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+        startActivity(intent);
+    }
+
 
 
     //Parameters: age, weight(in pounds), height in feet, height in inches, gender (Male or Female string),
@@ -129,3 +136,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
+

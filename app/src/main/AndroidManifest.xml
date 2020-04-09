@@ -9,6 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+         <provider
+            android:name=".MyContentProvider"
+            android:authorities="edu.fsu.cs.weightmate.provider"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="edu.fsu.cs.contentprovider.permission.READ_PERMISSION"
+            android:writePermission="edu.fsu.educontentprovider.permission.WRITE_PERMISSION">
+        </provider>
+        <activity android:name=".SignUpActivity" />
         <activity android:name=".AddMealActivity"></activity>
         <activity android:name=".LoginPage"></activity>
         <activity android:name=".LandingPage" />

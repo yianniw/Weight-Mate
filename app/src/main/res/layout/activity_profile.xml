@@ -5,12 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+<!--  Header  -->
     <LinearLayout
         android:id="@+id/profile_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/lightblue" >
+        android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/profile_image"
@@ -125,13 +125,14 @@
         android:layout_below="@+id/profile_header"
         android:background="?android:attr/listDivider" />
 
+<!--  Body  -->
     <ScrollView
         android:id="@+id/profile_scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/profile_divider"
         android:layout_above="@id/profile_footer"
-        android:layout_marginTop="5dp" >
+        android:layout_marginTop="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -142,53 +143,68 @@
                 android:id="@+id/profile_stats"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:text="@string/profile_stats" />
 
             <Button
                 android:id="@+id/profile_goals"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:text="@string/profile_goals" />
 
             <Button
                 android:id="@+id/profile_log_view"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:text="@string/profile_log_view" />
 
             <Button
                 android:id="@+id/profile_log_edit"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:text="@string/profile_log_edit" />
 
         </LinearLayout>
     </ScrollView>
 
+    <View
+        android:id="@+id/profile_divider2"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="?android:attr/listDivider"
+        android:layout_above="@id/profile_footer"/>
+
+<!-- Footer -->
     <LinearLayout
         android:id="@+id/profile_footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical"
-        android:background="@color/lightblue" >
-
-        <View
-            android:id="@+id/profile_divider2"
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="?android:attr/listDivider" />
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/profile_settings"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="#FF4B4B"
             android:text="@string/profile_settings" />
 
         <Button
             android:id="@+id/profile_logout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="#FF4B4B"
             android:text="@string/profile_logout" />
     </LinearLayout>
 

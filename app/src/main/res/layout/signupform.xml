@@ -204,7 +204,7 @@
                 android:id="@+id/ageText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Age" />
+                android:text="Age:" />
 
             <EditText
                 android:id="@+id/ageForm"
@@ -225,7 +225,7 @@
                 android:id="@+id/weightText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Weight (lbs)" />
+                android:text="Weight (lbs):" />
 
             <EditText
                 android:id="@+id/weightForm"
@@ -247,14 +247,34 @@
                 android:id="@+id/HeightText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Height (inches)" />
+                android:text="Height:" />
 
             <EditText
-                android:id="@+id/HeightForm"
-                android:layout_width="50dp"
+                android:id="@+id/HeightFeetForm"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:importantForAutofill="no"
                 android:inputType="number" />
+
+            <TextView
+                android:id="@+id/feet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ft" />
+
+            <EditText
+                android:id="@+id/HeightInchesForm"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:importantForAutofill="no"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/inches"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="inches" />
+
 
         </LinearLayout>
 
@@ -264,6 +284,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="@color/blueshade2"
                 android:layout_height="40dp"
+                android:onClick="Register"
                 android:layout_gravity="center"
                 android:text="Sign up" />
 
@@ -282,6 +303,7 @@
                 android:layout_marginRight="12dp"
                 android:background="@color/blueshade2"
                 android:layout_gravity="center"
+                android:onClick="Reset"
                 android:text="Reset" />
 
             <Button
@@ -290,6 +312,7 @@
                 android:layout_width="100dp"
                 android:background="@color/blueshade2"
                 android:layout_height="40dp"
+                android:onClick="BackToMain"
                 android:layout_gravity="center"
                 android:text="Back" />
 
