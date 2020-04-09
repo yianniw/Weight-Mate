@@ -44,6 +44,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10dp"
                 android:background="#6AD7DF"
+                android:onClick="startLogin"
                 android:text="LOGIN" />
         </LinearLayout>
 

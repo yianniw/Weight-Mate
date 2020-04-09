@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Function to launch LoginPage for development purposes
-    private void startLogin(){
+    public void startLogin(View v){
         Intent intent = new Intent(MainActivity.this, LoginPage.class);
         startActivity(intent);
     }
