@@ -37,7 +37,7 @@
                 android:text="Email:" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/login_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -51,7 +51,7 @@
                 android:text="Password" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/login_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -62,6 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="30dp"
+                android:onClick="checkLogin"
                 android:text="Login" />
         </LinearLayout>
 

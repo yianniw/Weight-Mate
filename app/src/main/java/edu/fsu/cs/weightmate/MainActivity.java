@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //startProfile();
+        //startLogin();
     }
 
     // test function to launch ProfileActivity
@@ -22,6 +23,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //Function to launch LoginPage for development purposes
+    private void startLogin(){
+        Intent intent = new Intent(MainActivity.this, LoginPage.class);
+        startActivity(intent);
+    }
 
 
     //Parameters: age, weight(in pounds), height in feet, height in inches, gender (Male or Female string),
