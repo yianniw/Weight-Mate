@@ -157,6 +157,8 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.profile_settings:
+                intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
                 break;
             case R.id.profile_logout:
                 showLogoutDialog();
