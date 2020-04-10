@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -45,6 +46,47 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
 
         setupUI();
         retrieveBundle();
+
+        // Button actions
+        goalTracker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToPage("");
+            }
+        });
+        stats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToPage("StatsActivity");
+            }
+        });
+        viewLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToPage("");
+            }
+        });
+        editLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToPage("");
+            }
+        });
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToPage("SettingsActivity");
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Code to log user out
+
+                // Go to Landing Page
+                goToPage("LandingPage");
+            }
+        });
     }
 
     private void setupUI() {
@@ -163,6 +205,30 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
             case R.id.profile_logout:
                 showLogoutDialog();
                 break;
+        }
+    }
+
+    // Helper Function to navigate pages
+    // Param "page" must equal the exact activity filename.
+    private void goToPage(String page) {
+        Intent intent = null;
+
+        switch (page) {
+            case "StatsActivity":
+                intent = new Intent(this, StatsActivity.class);
+                break;
+            case "SettingsActivity":
+                intent = new Intent(this, SettingsActivity.class);
+                break;
+            case "LandingPage":
+                intent = new Intent(this, LandingPage.class);
+                break;
+            default:
+                Log.d("Error", "Wrong param name in ProfileActivity goToPage() function");
+                break;
+        }
+        if(intent != null) {
+            startActivity(intent);
         }
     }
 

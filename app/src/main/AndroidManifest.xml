@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".StatsActivity"></activity>
+        <activity android:name=".SettingsActivity" />
 
         <provider
             android:name=".MyContentProvider"
@@ -17,7 +18,7 @@
             android:enabled="true"
             android:exported="true"
             android:readPermission="edu.fsu.cs.contentprovider.permission.READ_PERMISSION"
-            android:writePermission="edu.fsu.educontentprovider.permission.WRITE_PERMISSION"></provider>
+            android:writePermission="edu.fsu.educontentprovider.permission.WRITE_PERMISSION" />
 
         <activity android:name=".SignUpActivity" />
         <activity android:name=".AddMealActivity" />
