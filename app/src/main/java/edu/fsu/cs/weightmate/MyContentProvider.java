@@ -46,7 +46,7 @@ import android.database.sqlite.SQLiteOpenHelper;
         protected static final class MainDatabaseHelper extends SQLiteOpenHelper {
 
             MainDatabaseHelper(Context context) {
-                super(context, DBNAME, null, 2);
+                super(context, DBNAME, null, 3);
             }
             @Override
             public void onCreate(SQLiteDatabase db) {
