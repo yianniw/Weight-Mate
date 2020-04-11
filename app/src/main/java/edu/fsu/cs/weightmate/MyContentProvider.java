@@ -23,6 +23,10 @@ import android.database.sqlite.SQLiteOpenHelper;
         public final static String COLUMN_WEIGHT = "Weight";
         public final static String COLUMN_FEET = "Feet";
         public final static String COLUMN_INCHES = "Inches";
+        public final static String COLUMN_GWEIGHT = "GoalWeight";
+        public final static String COLUMN_CARBS = "Carbs";
+        public final static String COLUMN_PROTEIN = "Protein";
+        public final static String COLUMN_FAT = "Fat";
 
 
         public final static String DBNAME = "weightmateDB";
@@ -31,7 +35,8 @@ import android.database.sqlite.SQLiteOpenHelper;
                         COLUMN_EMAIL + " TEXT PRIMARY KEY, " + COLUMN_PASSWORD + " TEXT, " +
                         COLUMN_GENDER + " TEXT, " + COLUMN_GOAL + " TEXT, " + COLUMN_ACTIVITY + " TEXT,  "
                         + COLUMN_AGE + " INT, " + COLUMN_WEIGHT + " DOUBLE, " + COLUMN_FEET + " INT, " +
-                        COLUMN_INCHES +  " INT)" ;
+                        COLUMN_INCHES +  " INT, " + COLUMN_GWEIGHT + " DOUBLE, " + COLUMN_CARBS + " INT, "
+                        + COLUMN_PROTEIN + " INT, " + COLUMN_FAT + " INT)";
 
          public static final Uri CONTENT_URI = Uri.parse("content://edu.fsu.cs.weightmate.provider/userstable");
 
@@ -41,14 +46,22 @@ import android.database.sqlite.SQLiteOpenHelper;
         protected static final class MainDatabaseHelper extends SQLiteOpenHelper {
 
             MainDatabaseHelper(Context context) {
-                super(context, DBNAME, null, 1);
+                super(context, DBNAME, null, 2);
             }
             @Override
             public void onCreate(SQLiteDatabase db) {
                 db.execSQL(SQL_CREATE_MAIN);
             }
             @Override
-            public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {}
+            public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
+
+                arg0.execSQL("DROP TABLE IF EXISTS " + TABLE_NAMESTABLE);
+                onCreate(arg0);
+
+                }
+
+
+
         }
 
         @Override
@@ -92,4 +105,5 @@ import android.database.sqlite.SQLiteOpenHelper;
             return mOpenHelper.getWritableDatabase().update(TABLE_NAMESTABLE, values, selection, selectionArgs );
         }
 
-}
+
+    }
