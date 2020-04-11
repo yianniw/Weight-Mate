@@ -21,9 +21,11 @@ import android.widget.Toast;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    public int carbGrams = 1;
-    public int proteinGrams = 1;
-    public int fatGrams =1;
+    public int carbGrams;
+    public int proteinGrams;
+    public int fatGrams;
+    public double TEE;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -189,7 +191,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             if ( Double.parseDouble(goalWeightForm.getText().toString()) < 40) {
 
-                WeightText.setTextColor(Color.RED);
+                goalWeightText.setTextColor(Color.RED);
                 Toast.makeText(getApplicationContext(), "Invalid Goal Weight", Toast.LENGTH_LONG).show();
                 checkFields = 1;
             }
@@ -252,8 +254,10 @@ public class SignUpActivity extends AppCompatActivity {
                   mNewValues.put(MyContentProvider.COLUMN_CARBS, carbGrams );
                   mNewValues.put(MyContentProvider.COLUMN_PROTEIN, proteinGrams );
                   mNewValues.put(MyContentProvider.COLUMN_FAT, fatGrams );
+                mNewValues.put(MyContentProvider.COLUMN_CAL, TEE );
 
-                  mNewUri = getContentResolver().insert(
+
+                mNewUri = getContentResolver().insert(
                       Uri.parse("content://edu.fsu.cs.weightmate.provider/userstable"), mNewValues);
 
                 Intent intent = new Intent(SignUpActivity.this, ProfileActivity.class);
@@ -301,7 +305,6 @@ public class SignUpActivity extends AppCompatActivity {
         //We will use this to affect our TEE (Total Energy Expendeture) value, the total amount of
         //Calories the user uses for the day
 
-        double TEE = 0;
 
         if(gender == "Male"){
             if(activityLevel == "Sedentary"){
