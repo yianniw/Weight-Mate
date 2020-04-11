@@ -24,18 +24,15 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
     private TextView startDate;
     private TextView currentWeight;
     private TextView goalWeight;
-
     private TextView unit1;
     private TextView unit2;
-
     private String unitText;
-
-    // table
+    // body
     private Button goalTracker;
     private Button stats;
     private Button viewLog;
     private Button editLog;
-
+    // footer
     private Button settings;
     private Button logout;
 
@@ -47,75 +44,78 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
         setupUI();
         retrieveBundle();
 
-        // Button actions
-        goalTracker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToPage("");
-            }
-        });
-        stats.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToPage("StatsActivity");
-            }
-        });
-        viewLog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToPage("");
-            }
-        });
-        editLog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToPage("");
-            }
-        });
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToPage("SettingsActivity");
-            }
-        });
-       logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Code to log user out
-
-                // Go to Landing Page
-                Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
+//        // Button actions
+//        goalTracker.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                goToPage("");
+//            }
+//        });
+//        stats.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                goToPage("StatsActivity");
+//            }
+//        });
+//        viewLog.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                goToPage("");
+//            }
+//        });
+//        editLog.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                goToPage("");
+//            }
+//        });
+//        settings.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                goToPage("SettingsActivity");
+//            }
+//        });
+//       logout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Code to log user out
+//
+//                // Go to Landing Page
+//                Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 
     private void setupUI() {
         // Header
         profileImage = (ImageButton)findViewById(R.id.profile_image);
-        profileImage.setOnClickListener(this);
         profileName = (TextView)findViewById(R.id.profile_name);
         startDate = (TextView)findViewById(R.id.profile_date);
         currentWeight = (TextView)findViewById(R.id.profile_weight_currentval);
         goalWeight = (TextView)findViewById(R.id.profile_weight_goalval);
-
         unit1 = (TextView)findViewById(R.id.profile_units1);
         unit2 = (TextView)findViewById(R.id.profile_units2);
 
         // Body
         goalTracker = (Button)findViewById(R.id.profile_goals);
-        goalTracker.setOnClickListener(this);
         stats = (Button)findViewById(R.id.profile_stats);
-        stats.setOnClickListener(this);
         viewLog = (Button)findViewById(R.id.profile_log_view);
-        viewLog.setOnClickListener(this);
         editLog = (Button)findViewById(R.id.profile_log_edit);
-        editLog.setOnClickListener(this);
 
         // Footer
         settings = (Button)findViewById(R.id.profile_settings);
-        settings.setOnClickListener(this);
         logout = (Button)findViewById(R.id.profile_logout);
+
+        // setup onClick Listeners
+        profileImage.setOnClickListener(this);
+
+        goalTracker.setOnClickListener(this);
+        stats.setOnClickListener(this);
+        viewLog.setOnClickListener(this);
+        editLog.setOnClickListener(this);
+
+        settings.setOnClickListener(this);
         logout.setOnClickListener(this);
     }
 
@@ -147,7 +147,7 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
                 .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(ProfileActivity.this, LandingPage.class);
+                        Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     }
@@ -209,28 +209,28 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
         }
     }
 
-    // Helper Function to navigate pages
-    // Param "page" must equal the exact activity filename.
-    private void goToPage(String page) {
-        Intent intent = null;
-
-        switch (page) {
-            case "StatsActivity":
-                intent = new Intent(this, StatsActivity.class);
-                break;
-            case "SettingsActivity":
-                intent = new Intent(this, SettingsActivity.class);
-                break;
-            case "LandingPage":
-                intent = new Intent(this, LandingPage.class);
-                break;
-            default:
-                Log.d("Error", "Wrong param name in ProfileActivity goToPage() function");
-                break;
-        }
-        if(intent != null) {
-            startActivity(intent);
-        }
-    }
+//    // Helper Function to navigate pages
+//    // Param "page" must equal the exact activity filename.
+//    private void goToPage(String page) {
+//        Intent intent = null;
+//
+//        switch (page) {
+//            case "StatsActivity":
+//                intent = new Intent(this, StatsActivity.class);
+//                break;
+//            case "SettingsActivity":
+//                intent = new Intent(this, SettingsActivity.class);
+//                break;
+//            case "LandingPage":
+//                intent = new Intent(this, LandingPage.class);
+//                break;
+//            default:
+//                Log.d("Error", "Wrong param name in ProfileActivity goToPage() function");
+//                break;
+//        }
+//        if(intent != null) {
+//            startActivity(intent);
+//        }
+//    }
 
 }

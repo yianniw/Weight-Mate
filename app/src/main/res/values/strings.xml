@@ -26,16 +26,23 @@
     <string name="profile_log_view">View Meal Log</string>
     <string name="profile_log_edit">Edit Meal Log</string>
 
-    <string name="profile_settings">Settings</string>
-    <string name="profile_logout">Logout</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
 
     <string name="units_freedom">lbs</string>
     <string name="units_metric">kgs</string>
     <string name="edit">Edit</string>
 
     <!-- Settings Strings -->
-    <string name="settings_notifications">Notifications</string>
-    <string name="settings_reset">Reset</string>
+    <string name="settings_notifications">Allow Notifications</string>
+    <string name="settings_reset">Reset Settings</string>
     <string name="settings_delete">Delete Account</string>
+    <string name="settings_units">Preferred Units</string>
+    <string name="settings_confirm">Confirm Changes</string>
+
+    <string-array name="unit_names">
+        <item>Imperial(lbs)</item>
+        <item>Metric(kgs)</item>
+    </string-array>
 
 </resources>

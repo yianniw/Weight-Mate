@@ -196,7 +196,7 @@
             android:layout_weight="1"
             android:layout_margin="5dp"
             android:background="#FF4B4B"
-            android:text="@string/profile_settings" />
+            android:text="@string/settings" />
 
         <Button
             android:id="@+id/profile_logout"
@@ -205,7 +205,7 @@
             android:layout_weight="1"
             android:layout_margin="5dp"
             android:background="#FF4B4B"
-            android:text="@string/profile_logout" />
+            android:text="@string/logout" />
     </LinearLayout>
 
 </RelativeLayout>
