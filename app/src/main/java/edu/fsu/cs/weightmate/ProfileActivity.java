@@ -78,13 +78,14 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
                 goToPage("SettingsActivity");
             }
         });
-        logout.setOnClickListener(new View.OnClickListener() {
+       logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Code to log user out
 
                 // Go to Landing Page
-                goToPage("LandingPage");
+                Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }
