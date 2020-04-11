@@ -27,6 +27,7 @@ import android.database.sqlite.SQLiteOpenHelper;
         public final static String COLUMN_CARBS = "Carbs";
         public final static String COLUMN_PROTEIN = "Protein";
         public final static String COLUMN_FAT = "Fat";
+        public final static String COLUMN_CAL = "Calories";
 
 
         public final static String DBNAME = "weightmateDB";
@@ -36,7 +37,7 @@ import android.database.sqlite.SQLiteOpenHelper;
                         COLUMN_GENDER + " TEXT, " + COLUMN_GOAL + " TEXT, " + COLUMN_ACTIVITY + " TEXT,  "
                         + COLUMN_AGE + " INT, " + COLUMN_WEIGHT + " DOUBLE, " + COLUMN_FEET + " INT, " +
                         COLUMN_INCHES +  " INT, " + COLUMN_GWEIGHT + " DOUBLE, " + COLUMN_CARBS + " INT, "
-                        + COLUMN_PROTEIN + " INT, " + COLUMN_FAT + " INT)";
+                        + COLUMN_PROTEIN + " INT, " + COLUMN_FAT + " INT, " + COLUMN_CAL + " DOUBLE)";
 
          public static final Uri CONTENT_URI = Uri.parse("content://edu.fsu.cs.weightmate.provider/userstable");
 
@@ -46,7 +47,7 @@ import android.database.sqlite.SQLiteOpenHelper;
         protected static final class MainDatabaseHelper extends SQLiteOpenHelper {
 
             MainDatabaseHelper(Context context) {
-                super(context, DBNAME, null, 3);
+                super(context, DBNAME, null, 4);
             }
             @Override
             public void onCreate(SQLiteDatabase db) {
