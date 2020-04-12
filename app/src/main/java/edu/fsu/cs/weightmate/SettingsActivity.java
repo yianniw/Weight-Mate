@@ -16,6 +16,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     // SharedPreferences
     SharedPreferences sharedPreferences;
     public static final String PREFERENCES_NAME = "weightMatePrefs";
+    public static final String SESSION_EMAIL = "sessionEmail"; // value = string
     public static final String NOTIFICATION_KEY = "notificationKey"; // value = boolean
     public static final String UNIT_KEY = "unitKey"; // value = int
 
