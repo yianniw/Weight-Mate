@@ -110,8 +110,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.settings_confirm_layout:
                 savePrefs();
-                Intent intent = new Intent(SettingsActivity.this, ProfileActivity.class);
-                startActivity(intent);
                 finish();
                 break;
         }
