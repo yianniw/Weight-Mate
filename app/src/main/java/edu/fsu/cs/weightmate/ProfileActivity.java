@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -13,10 +15,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ProfileActivity extends Activity implements View.OnClickListener {
 
     public static final int PICK_IMAGE = 1;
+    public static String SESSION_EMAIL = "";
 
     // profile header
     private ImageButton profileImage;
@@ -43,6 +47,7 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
 
         setupUI();
         retrieveBundle();
+        //retrieveData();
 
 //        // Button actions
 //        goalTracker.setOnClickListener(new View.OnClickListener() {
@@ -123,8 +128,20 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
         Bundle bundle = getIntent().getExtras();
 
         if(bundle != null) {
+            // grab the username from the database; will refactor later
+            SESSION_EMAIL = getIntent().getStringExtra("SESSION_EMAIL");
+            Cursor cursor = getContentResolver().query(
+                    MyContentProvider.CONTENT_URI,
+                    null,
+                    MyContentProvider.COLUMN_EMAIL + " = ? ",
+                    new String[]{SESSION_EMAIL},
+                    null
+            );
+            cursor.moveToFirst();
+            profileName.setText(cursor.getString(cursor.getColumnIndex(MyContentProvider.COLUMN_NAME)));
+
             profileImage.setImageResource(bundle.getInt("profileImage"));
-            profileName.setText(bundle.getString("profileName"));
+            //profileName.setText(bundle.getString("profileName"));
             startDate.setText(bundle.getString("startDate"));
             currentWeight.setText(bundle.getString("currentWeight"));
             goalWeight.setText(bundle.getString("goalWeight"));
