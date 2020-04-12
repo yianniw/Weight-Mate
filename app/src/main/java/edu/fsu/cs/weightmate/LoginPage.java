@@ -39,6 +39,7 @@ public class LoginPage extends AppCompatActivity {
         }
         else{   //Switch to ProfileActivity
             Intent intent = new Intent(LoginPage.this, ProfileActivity.class);
+            intent.putExtra("SESSION_EMAIL", email.getText().toString().trim());
             startActivity(intent);
         }
     }
