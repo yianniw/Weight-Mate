@@ -6,21 +6,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ProfileActivity extends Activity implements View.OnClickListener {
 
     public static final int PICK_IMAGE = 1;
-    public static String SESSION_EMAIL = "";
 
     // profile header
     private ImageButton profileImage;
@@ -46,7 +41,7 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_profile);
 
         setupUI();
-        retrieveBundle();
+        retrieveData();
         //retrieveData();
 
 //        // Button actions
@@ -94,7 +89,8 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
-        // do nothing
+        // do nothing, the user should manually log out
+        // if they wish to go back from this activity.
     }
 
     private void setupUI() {
@@ -129,38 +125,29 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
         logout.setOnClickListener(this);
     }
 
-    private void retrieveBundle() {
-        Bundle bundle = getIntent().getExtras();
+    private void retrieveData() {
+        // TODO: clean up
+        // Profile Name
+        Cursor cursor = getContentResolver().query(
+                MyContentProvider.CONTENT_URI,
+                null,
+                MyContentProvider.COLUMN_EMAIL + " = ? ",
+                new String[]{SessionUtil.getSessionID(this)},
+                null
+        );
+        cursor.moveToFirst();
+        profileName.setText(cursor.getString(cursor.getColumnIndex(MyContentProvider.COLUMN_NAME)));
 
-        if(bundle != null) {
-            // grab the username from the database; will refactor later
-            SESSION_EMAIL = getIntent().getStringExtra("SESSION_EMAIL");
-            Cursor cursor = getContentResolver().query(
-                    MyContentProvider.CONTENT_URI,
-                    null,
-                    MyContentProvider.COLUMN_EMAIL + " = ? ",
-                    new String[]{SESSION_EMAIL},
-                    null
-            );
-            cursor.moveToFirst();
-            profileName.setText(cursor.getString(cursor.getColumnIndex(MyContentProvider.COLUMN_NAME)));
+        // TODO: the rest of this
+        // Only works below API 23
+        profileImage.setImageResource(android.R.drawable.ic_menu_gallery);
 
-            profileImage.setImageResource(bundle.getInt("profileImage"));
-            //profileName.setText(bundle.getString("profileName"));
-            startDate.setText(bundle.getString("startDate"));
-            currentWeight.setText(bundle.getString("currentWeight"));
-            goalWeight.setText(bundle.getString("goalWeight"));
-            unitText = bundle.getString("units");
-        } else {
-            profileImage.setImageResource(android.R.drawable.ic_menu_gallery);
-            profileName.setText(R.string.profile_name);
-            startDate.setText(R.string.profile_date_placeholder);
-            currentWeight.setText(R.string.profile_weight_placeholder);
-            goalWeight.setText(R.string.profile_weight_placeholder);
+        startDate.setText(R.string.profile_date_placeholder);
+        currentWeight.setText(R.string.profile_weight_placeholder);
+        goalWeight.setText(R.string.profile_weight_placeholder);
 
-            unit1.setText(R.string.units_freedom);
-            unit2.setText(R.string.units_freedom);
-        }
+        unit1.setText(R.string.units_freedom);
+        unit2.setText(R.string.units_freedom);
     }
 
     private void showLogoutDialog() {
@@ -169,6 +156,7 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
                 .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        SessionUtil.finishSession(ProfileActivity.this);
                         Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
