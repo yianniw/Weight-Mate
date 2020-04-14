@@ -92,6 +92,11 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
 //        });
     }
 
+    @Override
+    public void onBackPressed() {
+        // do nothing
+    }
+
     private void setupUI() {
         // Header
         profileImage = (ImageButton)findViewById(R.id.profile_image);
