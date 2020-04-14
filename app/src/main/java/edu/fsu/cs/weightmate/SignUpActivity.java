@@ -260,11 +260,10 @@ public class SignUpActivity extends AppCompatActivity {
                 mNewUri = getContentResolver().insert(
                       Uri.parse("content://edu.fsu.cs.weightmate.provider/userstable"), mNewValues);
 
+                SessionUtil.startSession(this, EmailForm.getText().toString().trim());
                 Intent intent = new Intent(SignUpActivity.this, ProfileActivity.class);
-                intent.putExtra("SESSION_EMAIL", EmailForm.getText().toString().trim());
                 startActivity(intent);
                 finish();
-
 
             }
 
