@@ -14,11 +14,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.landing_page);
 
-        //startProfile();
+        if(SessionUtil.getSessionID(this) != null) {
+            startProfile();
+        }
+
         //startLogin();
     }
 
-    // test function to launch ProfileActivity
     private void startProfile() {
         Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
         startActivity(intent);
