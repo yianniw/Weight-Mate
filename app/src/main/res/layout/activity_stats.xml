@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
                 android:gravity="center"
-                android:text="Calories"
+                android:text="Recommended Daily Calories"
                 android:textSize="18sp" />
 
         </RelativeLayout>
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
                 android:gravity="center"
-                android:text="Carbs"
+                android:text="Recommended Daily Carbs"
                 android:textSize="18sp" />
 
             <TextView
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
                 android:gravity="center"
-                android:text="Fats"
+                android:text="Recommended Daily Fats"
                 android:textSize="18sp" />
 
             <TextView
@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
                 android:gravity="center"
-                android:text="Protien"
+                android:text="Recommended Daily Proteins"
                 android:textSize="18sp" />
 
             <TextView
