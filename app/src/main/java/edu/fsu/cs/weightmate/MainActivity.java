@@ -12,10 +12,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.landing_page);
-
+        // If the user was previously logged in, launch ProfileActivity
         if(SessionUtil.getSessionID(this) != null) {
             startProfile();
+            finish();
+        } else {
+            setContentView(R.layout.landing_page);
         }
 
         //startLogin();

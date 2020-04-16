@@ -25,7 +25,7 @@ public final class SessionUtil {
     }
 
     /**
-     * Returns the ID of the user currently logged in. Defaults to null if the user is logged out.
+     * Returns the ID of the user currently logged in. Defaults to <b>null</b> if the user is logged out.
      * @param context activity calling the method.
      * @return the ID of the user currently logged in.
      */
