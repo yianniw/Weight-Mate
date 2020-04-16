@@ -126,5 +126,31 @@
                 android:text="1,000,000 grams of Protien every day" />
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/GoalsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ProtienLayout"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/goals_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
+                android:text="Goals"
+                android:textSize="18sp" />
+
+<!--            <TextView-->
+<!--                android:id="@+id/goals_value"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@+id/goals"-->
+<!--                android:layout_marginTop="0dp"-->
+<!--                android:gravity="center"-->
+<!--                android:text="" />-->
+        </RelativeLayout>
+
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

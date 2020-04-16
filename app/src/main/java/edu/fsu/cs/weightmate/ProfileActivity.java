@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -47,10 +48,16 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
         Intent intent;
         switch(v.getId()) {
             case R.id.profile_goals:
+//                intent = new Intent(this, .class);
+//                startActivity(intent);
                 break;
             case R.id.profile_stats:
+                intent = new Intent(this, StatsActivity.class);
+                startActivity(intent);
                 break;
             case R.id.profile_log_view:
+//                intent = new Intent(this, .class);
+//                startActivity(intent);
                 break;
             case R.id.profile_log_edit:
                 intent = new Intent(this, AddMealActivity.class);
@@ -105,11 +112,11 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
                 null
         );
         cursor.moveToFirst();
-        profileName.setText(cursor.getString(cursor.getColumnIndex(MyContentProvider.COLUMN_NAME)));
 
-        // TODO: the rest of this
-        currentWeight.setText(R.string.profile_weight_placeholder);
-        goalWeight.setText(R.string.profile_weight_placeholder);
+        // Set texts to query results
+        profileName.setText(cursor.getString(cursor.getColumnIndex(MyContentProvider.COLUMN_NAME)));
+        currentWeight.setText(cursor.getString(cursor.getColumnIndex(MyContentProvider.COLUMN_WEIGHT)));
+        goalWeight.setText(cursor.getString(cursor.getColumnIndex(MyContentProvider.COLUMN_GWEIGHT)));
 
         unit1.setText(R.string.units_freedom);
         unit2.setText(R.string.units_freedom);
@@ -132,5 +139,4 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
                     public void onClick(DialogInterface dialog, int which) { }
                 }).show();
     }
-
 }
