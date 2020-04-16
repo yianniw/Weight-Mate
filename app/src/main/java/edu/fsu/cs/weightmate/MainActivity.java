@@ -13,9 +13,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.landing_page);
-
-        Intent intent = new Intent(MainActivity.this, AddMealActivity.class);
-        startActivity(intent);
+        
         //startProfile();
     }
 
