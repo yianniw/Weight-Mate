@@ -56,8 +56,8 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.profile_log_view:
-//                intent = new Intent(this, .class);
-//                startActivity(intent);
+                intent = new Intent(this, ListMealActivity.class);
+                startActivity(intent);
                 break;
             case R.id.profile_log_edit:
                 intent = new Intent(this, AddMealActivity.class);
