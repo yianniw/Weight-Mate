@@ -50,10 +50,22 @@ public class ListMealActivity extends AppCompatActivity {
 
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("Breakfast");
-        arrayList.add("100 Calories");
-        arrayList.add("5g Protein");
-        arrayList.add("2g Carbs");
-        arrayList.add("3g Fat");
+        arrayList.add("400 Calories");
+        arrayList.add("15g Protein");
+        arrayList.add("12g Carbs");
+        arrayList.add("13g Fat");
+
+        arrayList.add("Lunch");
+        arrayList.add("600 Calories");
+        arrayList.add("20g Protein");
+        arrayList.add("18g Carbs");
+        arrayList.add("15g Fat");
+
+        arrayList.add("Dinner");
+        arrayList.add("900 Calories");
+        arrayList.add("35g Protein");
+        arrayList.add("32g Carbs");
+        arrayList.add("23g Fat");
 
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayList);
