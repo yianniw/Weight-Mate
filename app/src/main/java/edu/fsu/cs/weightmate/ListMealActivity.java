@@ -11,15 +11,15 @@ import java.util.ArrayList;
 
 public class ListMealActivity extends AppCompatActivity {
 
-    TextView totalCalories;
-    TextView totalProtein;
-    TextView totalCarbs;
-    TextView totalFat;
+    TextView totalCaloriesView;
+    TextView totalProteinView;
+    TextView totalCarbsView;
+    TextView totalFatView;
 
-    TextView remainingCalories;
-    TextView remainingProtein;
-    TextView remainingCarbs;
-    TextView remainingFat;
+    TextView remainingCaloriesView;
+    TextView remainingProteinView;
+    TextView remainingCarbsView;
+    TextView remainingFatView;
 
     ListView listView;
 
@@ -31,20 +31,60 @@ public class ListMealActivity extends AppCompatActivity {
         //Setup our TextViews
         //These display the amounts next to the title
         //Today's Total
-        totalCalories = findViewById(R.id.listmealTotalCalories);
-        totalProtein = findViewById(R.id.listMealTotalProtein);
-        totalCarbs = findViewById(R.id.listMealTotalCarbs);
-        totalFat = findViewById(R.id.listMealTotalFat);
+        totalCaloriesView = findViewById(R.id.listmealTotalCalories);
+        totalProteinView = findViewById(R.id.listMealTotalProtein);
+        totalCarbsView = findViewById(R.id.listMealTotalCarbs);
+        totalFatView = findViewById(R.id.listMealTotalFat);
 
         //Today's Remaining
-        remainingCalories = findViewById(R.id.listmealTotalCalories2);
-        remainingProtein = findViewById(R.id.listMealTotalProtein2);
-        remainingCarbs = findViewById(R.id.listMealTotalCarbs2);
-        remainingFat = findViewById(R.id.listMealTotalFat2);
+        remainingCaloriesView = findViewById(R.id.listmealTotalCalories2);
+        remainingProteinView = findViewById(R.id.listMealTotalProtein2);
+        remainingCarbsView = findViewById(R.id.listMealTotalCarbs2);
+        remainingFatView = findViewById(R.id.listMealTotalFat2);
 
         //Here is where we would import today's total and calculate the remainder using
         //User Information, for now we will use placeholders until other components are
         //setup
+
+        //Here I am putting placeholder values, in the future this is where I would assign
+        //Values from the content provider
+
+        //Display these on the top
+        int totalCalories = 2300;
+        int totalProtein = 50;
+        int totalCarbs = 75;
+        int totalFat = 25;
+
+
+        //Add up the total calories, protein, fat, carbs eaten from all the meals for the day,
+        //Then we will subtract them from our above totals
+
+        int calConsumed = 1400;
+        int proteinConsumed = 35;
+        int carbsConsumed = 55;
+        int fatConsumed = 15;
+
+        //Display these below
+        int calRemaining = totalCalories - calConsumed;
+        int proteinRemaining = totalProtein - proteinConsumed;
+        int carbsRemaining = totalCarbs - carbsConsumed;
+        int fatRemaining = totalFat - fatConsumed;
+
+
+        //Now assign our values to the textview's
+        String cal = "Hi";
+        totalCaloriesView.setText(String.valueOf(totalCalories));
+        totalProteinView.setText(String.valueOf(totalProtein));
+        totalCarbsView.setText(String.valueOf(totalCarbs));
+        totalFatView.setText(String.valueOf(totalFat));
+
+        remainingCaloriesView.setText(String.valueOf(calRemaining));
+        remainingProteinView.setText(String.valueOf(proteinRemaining));
+        remainingCarbsView.setText(String.valueOf(carbsRemaining));
+        remainingFatView.setText(String.valueOf(fatRemaining));
+
+
+
 
         listView = (ListView)findViewById(R.id.listMealListView);
 
