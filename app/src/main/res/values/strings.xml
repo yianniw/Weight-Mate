@@ -29,6 +29,13 @@
     <string name="listMealTitle1"><u>Today\'s Meal Summary:</u></string>
     <string name="listMealTitle2"><u>Total Nutrition Remaining:</u></string>
 
+    <string name="listmealentryMealName"><u>Meal Name Placeholder</u></string>
+    <string name="listmealentryMealCalories">Meal Calories Placeholder</string>
+    <string name="listmealentryMealProtein">Meal Protein Placeholder</string>
+    <string name="listmealentryMealCarbs">Meal Carbs Placeholder</string>
+    <string name="listmealentryMealFat">Meal Fat Placeholder</string>
+
+
     <!-- Settings Strings -->
     <string name="settings_delete">Delete Account</string>
     <string name="settings_units">Preferred Units</string>
