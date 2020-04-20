@@ -150,22 +150,18 @@ public class MyContentProvider extends ContentProvider {
         @Override
         public int update(Uri uri, ContentValues values, String selection,
                           String[] selectionArgs) {
-            switch(uriMatcher.match(uri)){
+            switch (uriMatcher.match(uri)) {
                 case USERS:
-                    return mOpenHelper.getWritableDatabase().update(TABLE_NAMESTABLE, values, selection, selectionArgs );
+                    return mOpenHelper.getWritableDatabase().update(TABLE_NAMESTABLE, values, selection, selectionArgs);
                 case MEALS:
-                    return mOpenHelper.getWritableDatabase().update(TABLE_NAMESTABLE2, values, selection, selectionArgs );
+                    return mOpenHelper.getWritableDatabase().update(TABLE_NAMESTABLE2, values, selection, selectionArgs);
                 default:
                     break;
             }
 
-            return mOpenHelper.getWritableDatabase().update(TABLE_NAMESTABLE, values, selection, selectionArgs );
+            return mOpenHelper.getWritableDatabase().update(TABLE_NAMESTABLE, values, selection, selectionArgs);
         }
 
-<<<<<<< HEAD
-
-    }
-=======
         @Override
         public int delete(Uri uri, String selection, String[] selectionArgs) {
             switch(uriMatcher.match(uri)){
@@ -179,4 +175,4 @@ public class MyContentProvider extends ContentProvider {
             return mOpenHelper.getWritableDatabase().delete(TABLE_NAMESTABLE, selection, selectionArgs);
         }
 }
->>>>>>> giobranchprogress2
+

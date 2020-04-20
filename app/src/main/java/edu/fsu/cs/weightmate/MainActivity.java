@@ -21,6 +21,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //startLogin();
+
+        setContentView(R.layout.landing_page);
+        
+        //startProfile();
     }
 
     private void startProfile() {
