@@ -21,7 +21,6 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
     private TextView unit2;
     private String unitText;
     // body
-    private Button goalTracker;
     private Button stats;
     private Button viewLog;
     private Button editLog;
@@ -47,10 +46,6 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         Intent intent;
         switch(v.getId()) {
-            case R.id.profile_goals:
-//                intent = new Intent(this, .class);
-//                startActivity(intent);
-                break;
             case R.id.profile_stats:
                 intent = new Intent(this, StatsActivity.class);
                 startActivity(intent);
@@ -82,7 +77,6 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
         unit2 = (TextView)findViewById(R.id.profile_units2);
 
         // Body
-        goalTracker = (Button)findViewById(R.id.profile_goals);
         stats = (Button)findViewById(R.id.profile_stats);
         viewLog = (Button)findViewById(R.id.profile_log_view);
         editLog = (Button)findViewById(R.id.profile_log_edit);
@@ -92,7 +86,6 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
         logout = (Button)findViewById(R.id.profile_logout);
 
         // Setup onClickListeners
-        goalTracker.setOnClickListener(this);
         stats.setOnClickListener(this);
         viewLog.setOnClickListener(this);
         editLog.setOnClickListener(this);

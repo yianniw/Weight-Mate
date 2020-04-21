@@ -3,7 +3,9 @@ package edu.fsu.cs.weightmate;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,23 +23,43 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     public static final String UNIT_KEY = "unitKey"; // value = int
 
     // UI
-    ConstraintLayout notifyLayout;
-    CheckBox notifyCheckbox;
-    ConstraintLayout unitLayout;
-    Spinner unitSpinner;
-    ConstraintLayout resetLayout;
-    ConstraintLayout confirmLayout;
+    private ConstraintLayout notifyLayout;
+    private CheckBox notifyCheckbox;
+    private ConstraintLayout unitLayout;
+    private Spinner unitSpinner;
+    private ConstraintLayout deleteLayout;
+    private ConstraintLayout confirmLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-
-        // set title of the toolbar
         this.getSupportActionBar().setTitle(R.string.settings);
 
         setupUI();
         setupPrefs();
+    }
+
+    /**
+     * The layouts handle the click events rather than the widgets, allowing the
+     * user to click anywhere in the row rather than having to click on the widget itself.
+     */
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.settings_notify_layout:
+                notifyCheckbox.setChecked(!notifyCheckbox.isChecked());
+                break;
+            case R.id.settings_units_layout:
+                unitSpinner.performClick();
+                break;
+            case R.id.settings_delete_layout:
+                showDeleteDialog();
+                break;
+            case R.id.settings_confirm_layout:
+                savePrefs();
+                finish();
+                break;
+        }
     }
 
     private void setupUI() {
@@ -46,18 +68,18 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         notifyCheckbox = (CheckBox)findViewById(R.id.settings_notify_checkbox);
         unitLayout = (ConstraintLayout)findViewById(R.id.settings_units_layout);
         unitSpinner = (Spinner)findViewById(R.id.settings_units_spinner);
-        resetLayout = (ConstraintLayout)findViewById(R.id.settings_reset_layout);
+        deleteLayout = (ConstraintLayout)findViewById(R.id.settings_delete_layout);
         confirmLayout = (ConstraintLayout)findViewById(R.id.settings_confirm_layout);
 
         // setup onClick Listeners
         notifyLayout.setOnClickListener(this);
         unitLayout.setOnClickListener(this);
-        resetLayout.setOnClickListener(this);
+        deleteLayout.setOnClickListener(this);
         confirmLayout.setOnClickListener(this);
     }
 
-    /** Prepare sharedPreferences
-     * opens up shared prefs and populates all forms with previously selected values
+    /**
+     * Opens up SharedPrefs and populates all forms with previous values
      */
     private void setupPrefs() {
         sharedPreferences = getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
@@ -69,12 +91,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    public void resetSettings() {
-        notifyCheckbox.setChecked(true);
-        unitSpinner.setSelection(0);
-    }
-
-    public void savePrefs() {
+    private void savePrefs() {
         boolean notifications = notifyCheckbox.isChecked();
         int units = unitSpinner.getSelectedItemPosition();
 
@@ -84,35 +101,39 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         editor.apply();
     }
 
-    /** onClick handler
-     * The layouts handle the click events rather than the widgets, allowing the
-     * user to click anywhere in the row rather than having to click on the widget itself.
-     * @param v - View
-     */
-    public void onClick(View v) {
-        switch(v.getId()) {
-            case R.id.settings_notify_layout:
-                notifyCheckbox.setChecked(!notifyCheckbox.isChecked());
-                break;
-            case R.id.settings_units_layout:
-                unitSpinner.performClick();
-                break;
-            case R.id.settings_reset_layout:
-                resetSettings();
-                break;
-            case R.id.settings_delete_layout:
-                // TODO:
-                // create dialog for confirmation
-                // (On confirmation): remove account from database
-//                Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
-//                startActivity(intent);
-//                finish();
-                // (On cancel): do nothing
-                break;
-            case R.id.settings_confirm_layout:
-                savePrefs();
-                finish();
-                break;
-        }
+    private void showDeleteDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
+        builder.setTitle("Delete Account?")
+                .setMessage("Are you sure you want to delete your account?")
+                .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SessionUtil.finishSession(SettingsActivity.this);
+                        deleteAccount();
+                        Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) { }
+                }).show();
     }
+
+    // TODO: Remove account and all info from database
+    /**
+     * Deletes the user and associated data from the databases.
+     * called from showDeleteDialog()
+     */
+    private void deleteAccount() {
+        String sessionID = SessionUtil.getSessionID(this);
+        // TODO: use sessionID to grab the current user in database.
+        //  remove user from table
+        //  remove meal table associated with the user
+        //  remove other info associated with the user, if there is any
+        //  do not remove SharedPrefs for SettingsActivity
+    }
+
+
 }

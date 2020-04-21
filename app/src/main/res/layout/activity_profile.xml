@@ -121,14 +121,6 @@
                 android:text="@string/profile_stats" />
 
             <Button
-                android:id="@+id/profile_goals"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:text="@string/profile_goals" />
-
-            <Button
                 android:id="@+id/profile_log_view"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
