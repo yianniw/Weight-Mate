@@ -17,9 +17,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Date;
+import java.util.Locale;
 
 public class AddMealActivity extends AppCompatActivity {
 
@@ -80,16 +83,22 @@ public class AddMealActivity extends AppCompatActivity {
             return;
         }
 
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         ContentValues values = new ContentValues();
-        values.put("username","Toby");
-        values.put("day","April 1");
+        values.put("username",SessionUtil.getSessionID(this));
+        values.put("day", date);
         values.put("mealname", mealname.getText().toString());
         values.put("calories",Double.parseDouble(itemcalories.getText().toString()));
         values.put("protein",Double.parseDouble(itemprotein.getText().toString()));
         values.put("carbs",Double.parseDouble(itemcarbs.getText().toString()));
         values.put("fat",Double.parseDouble(itemfat.getText().toString()));
 
-        Uri inserturi = getContentResolver().insert(MyContentProvider.CONTENT_URI_MEAL,values);
+       Uri inserturi = getContentResolver().insert(MyContentProvider.CONTENT_URI_MEAL,values);
+
+        Toast.makeText(getApplicationContext(), "Good job logging your meal!", Toast.LENGTH_LONG).show();
+       // Cursor mCursor = getContentResolver().query(MyContentProvider.CONTENT_URI_MEAL, null, null, null, null);
+
+
 
 
        /* ContentValues values = new ContentValues();
@@ -152,3 +161,4 @@ public class AddMealActivity extends AppCompatActivity {
     }
 
 }
+
