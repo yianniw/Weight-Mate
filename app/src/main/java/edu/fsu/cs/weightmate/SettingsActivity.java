@@ -128,6 +128,21 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
      */
     private void deleteAccount() {
         String sessionID = SessionUtil.getSessionID(this);
+        
+        String mSelectionClause;
+        String mSelectionClause2;
+        String[] mSelectionArgs;
+
+        mSelectionClause = MyContentProvider.COLUMN_EMAIL + " = ? ";
+        mSelectionArgs = new String [] { sessionID };
+
+        mSelectionClause2 = MyContentProvider.COLUMN_USERNAME2 + " = ? ";
+
+
+        int i = getContentResolver().delete(Uri.parse("content://edu.fsu.cs.weightmate.provider/userstable"), mSelectionClause, mSelectionArgs);
+        int f = getContentResolver().delete(Uri.parse("content://edu.fsu.cs.weightmate.provider/mealstable"), mSelectionClause2, mSelectionArgs);
+
+        
         // TODO: use sessionID to grab the current user in database.
         //  remove user from table
         //  remove meal table associated with the user
