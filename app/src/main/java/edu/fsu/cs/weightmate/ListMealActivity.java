@@ -94,23 +94,20 @@ public class ListMealActivity extends AppCompatActivity {
         //Add up the total calories, protein, fat, carbs eaten from all the meals for the day,
         //Then we will subtract them from our above totals
 
-      //Cursor cursor2 = getContentResolver().query(
-              //MyContentProvider.CONTENT_URI_MEAL, mProjection,
-              // mSelectionClause,
-              // mSelectionArgs, null);
+      Cursor cursor2 = getContentResolver().query(
+              MyContentProvider.CONTENT_URI_MEAL, mProjection,
+               mSelectionClause,
+               mSelectionArgs, null);
 
 
-       // Cursor mCursor = getContentResolver().query(MyContentProvider.CONTENT_URI_MEAL, null, null, null, null);
+         while(cursor.moveToNext())
+        {
+            calConsumed += cursor.getColumnIndex(MyContentProvider.COLUMN_CALORIES2);
+           proteinConsumed += cursor.getColumnIndex(MyContentProvider.COLUMN_PROTEIN2);
+            carbsConsumed += cursor.getColumnIndex(MyContentProvider.COLUMN_CARBS2);
+            fatConsumed += cursor.getColumnIndex(MyContentProvider.COLUMN_FAT2);
 
-
-        // while(cursor.moveToNext())
-       // {
-        //    calConsumed += cursor.getColumnIndex(MyContentProvider.COLUMN_CALORIES2);
-        //    proteinConsumed += cursor.getColumnIndex(MyContentProvider.COLUMN_PROTEIN2);
-        //    carbsConsumed += cursor.getColumnIndex(MyContentProvider.COLUMN_CARBS2);
-        //    fatConsumed += cursor.getColumnIndex(MyContentProvider.COLUMN_FAT2);
-
-       // }
+        }
 
 
 
