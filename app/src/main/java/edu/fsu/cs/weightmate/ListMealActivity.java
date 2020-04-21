@@ -2,12 +2,19 @@ package edu.fsu.cs.weightmate;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.database.Cursor;
+import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class ListMealActivity extends AppCompatActivity {
 
@@ -28,6 +35,13 @@ public class ListMealActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_meal);
 
+        Cursor cursor = getContentResolver().query(
+                MyContentProvider.CONTENT_URI, null,
+              MyContentProvider.COLUMN_EMAIL + " = ? ",
+               new String[] {SessionUtil.getSessionID(this)}, null);
+
+        cursor.moveToFirst();
+
         //Setup our TextViews
         //These display the amounts next to the title
         //Today's Total
@@ -42,6 +56,11 @@ public class ListMealActivity extends AppCompatActivity {
         remainingCarbsView = findViewById(R.id.listMealTotalCarbs2);
         remainingFatView = findViewById(R.id.listMealTotalFat2);
 
+        double calConsumed = 0;
+        int proteinConsumed = 0;
+        int carbsConsumed = 0;
+        int fatConsumed = 0;
+
         //Here is where we would import today's total and calculate the remainder using
         //User Information, for now we will use placeholders until other components are
         //setup
@@ -50,39 +69,68 @@ public class ListMealActivity extends AppCompatActivity {
         //Values from the content provider
 
         //Display these on the top
-        int totalCalories = 2300;
-        int totalProtein = 50;
-        int totalCarbs = 75;
-        int totalFat = 25;
+        String calorieText = cursor.getString(cursor.getColumnIndex(MyContentProvider.COLUMN_CAL));
+
+       String carbText = cursor.getString(cursor.getColumnIndex(MyContentProvider.COLUMN_CARBS));
+
+        String fatText = cursor.getString(cursor.getColumnIndex(MyContentProvider.COLUMN_FAT));
+
+        String protienText = cursor.getString(cursor.getColumnIndex(MyContentProvider.COLUMN_PROTEIN));
+
+
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
+        String mSelectionClause;
+        String[] mSelectionArgs;
+        String[] mProjection;
+
+        mProjection = new String[] { MyContentProvider.COLUMN_CALORIES2, MyContentProvider.COLUMN_PROTEIN2,
+                                    MyContentProvider.COLUMN_FAT2, MyContentProvider.COLUMN_CARBS2 };
+        mSelectionClause = MyContentProvider.COLUMN_USERNAME2 + " = ?  AND " +  MyContentProvider.COLUMN_DAY2 + " = ? ";
+         mSelectionArgs = new String[] {SessionUtil.getSessionID(this), date};
+
 
 
         //Add up the total calories, protein, fat, carbs eaten from all the meals for the day,
         //Then we will subtract them from our above totals
 
-        int calConsumed = 1400;
-        int proteinConsumed = 35;
-        int carbsConsumed = 55;
-        int fatConsumed = 15;
+      //Cursor cursor2 = getContentResolver().query(
+              //MyContentProvider.CONTENT_URI_MEAL, mProjection,
+              // mSelectionClause,
+              // mSelectionArgs, null);
+
+
+       // Cursor mCursor = getContentResolver().query(MyContentProvider.CONTENT_URI_MEAL, null, null, null, null);
+
+
+        // while(cursor.moveToNext())
+       // {
+        //    calConsumed += cursor.getColumnIndex(MyContentProvider.COLUMN_CALORIES2);
+        //    proteinConsumed += cursor.getColumnIndex(MyContentProvider.COLUMN_PROTEIN2);
+        //    carbsConsumed += cursor.getColumnIndex(MyContentProvider.COLUMN_CARBS2);
+        //    fatConsumed += cursor.getColumnIndex(MyContentProvider.COLUMN_FAT2);
+
+       // }
+
+
 
         //Display these below
-        int calRemaining = totalCalories - calConsumed;
-        int proteinRemaining = totalProtein - proteinConsumed;
-        int carbsRemaining = totalCarbs - carbsConsumed;
-        int fatRemaining = totalFat - fatConsumed;
+       double calRemaining = Double.parseDouble(calorieText) - calConsumed;
+        int proteinRemaining = Integer.parseInt(protienText) - proteinConsumed;
+        int carbsRemaining = Integer.parseInt(carbText) - carbsConsumed;
+       int fatRemaining = Integer.parseInt(fatText) - fatConsumed;
 
 
         //Now assign our values to the textview's
-        String cal = "Hi";
-        totalCaloriesView.setText(String.valueOf(totalCalories));
-        totalProteinView.setText(String.valueOf(totalProtein));
-        totalCarbsView.setText(String.valueOf(totalCarbs));
-        totalFatView.setText(String.valueOf(totalFat));
+       totalCaloriesView.setText(String.valueOf(calConsumed));
+        totalProteinView.setText(String.valueOf(proteinConsumed));
+        totalCarbsView.setText(String.valueOf(carbsConsumed));
+        totalFatView.setText(String.valueOf(fatConsumed));
 
         remainingCaloriesView.setText(String.valueOf(calRemaining));
-        remainingProteinView.setText(String.valueOf(proteinRemaining));
-        remainingCarbsView.setText(String.valueOf(carbsRemaining));
+       remainingProteinView.setText(String.valueOf(proteinRemaining));
+       remainingCarbsView.setText(String.valueOf(carbsRemaining));
         remainingFatView.setText(String.valueOf(fatRemaining));
-
 
 
 
