@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -137,7 +138,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         mSelectionArgs = new String [] { sessionID };
 
         mSelectionClause2 = MyContentProvider.COLUMN_USERNAME2 + " = ? ";
-
 
         int i = getContentResolver().delete(Uri.parse("content://edu.fsu.cs.weightmate.provider/userstable"), mSelectionClause, mSelectionArgs);
         int f = getContentResolver().delete(Uri.parse("content://edu.fsu.cs.weightmate.provider/mealstable"), mSelectionClause2, mSelectionArgs);

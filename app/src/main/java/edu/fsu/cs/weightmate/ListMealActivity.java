@@ -15,6 +15,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Vector;
+
 import android.widget.SimpleCursorAdapter;
 
 public class ListMealActivity extends AppCompatActivity {
@@ -156,10 +158,46 @@ public class ListMealActivity extends AppCompatActivity {
                                                 MyContentProvider.COLUMN_PROTEIN2, MyContentProvider.COLUMN_CARBS2, MyContentProvider.COLUMN_FAT  };
         int [] listItems = new int[] { R.id.mealName, R.id.mealCalories, R.id.mealProtein, R.id.mealCarbs, R.id.mealFat };
         //SimpleCursorAdapter cursorAdapt = new SimpleCursorAdapter(this, R.layout.activity_list_meal, cursor,
-                                                            // listColumn, listItems  );
+        //listView.setAdapter(cursorAdapt);                                                   // listColumn, listItems  );
 
+        //Query the meal table and create a string out of every entry
+        Vector<String> meallist = new Vector<String>();
+        Cursor mCursor = getContentResolver().query(MyContentProvider.CONTENT_URI_MEAL, null, null, null, null);
+        if(mCursor == null){
+            Log.d("dbd","cursor is null");
+        }
+        else{
+            while(mCursor.moveToNext()) {
+                Log.d("dbd","cursor next");
+                //Log.d("dbd",mCursor.getString(0));
+                //Log.d("dbd",mCursor.getString(1));
+                Log.d("dbd",mCursor.getString(2));
+                Log.d("dbd",mCursor.getString(3));
+                Log.d("dbd",Double.toString(mCursor.getDouble(4)));
+                Log.d("dbd",Double.toString(mCursor.getDouble(5)));
+                Log.d("dbd",Double.toString(mCursor.getDouble(6)));
 
-       //listView.setAdapter(cursorAdapt);
+                //Create string
+                String s = "";
+                s = s + "Meal: " + mCursor.getString(2) + "\n";
+                s = s + "Calories: " + Double.toString(mCursor.getDouble(3)) + "\n";
+                s = s + "Protein: " + Double.toString(mCursor.getDouble(4)) + "\n";
+                s = s + "Carbs: " + Double.toString(mCursor.getDouble(5)) + "\n";
+                s = s + "Fat: " + Double.toString(mCursor.getDouble(6)) + "\n";
+                meallist.add(s);
+            }
+        }
+        //convert vectorarray to regular array
+        String mealstrings[] = new String[meallist.size()];
+        for(int i = 0;i<meallist.size();i++){
+            mealstrings[i] = meallist.get(i);
+        }
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>
+                (this,android.R.layout.simple_list_item_1,mealstrings);
+
+        listView.setAdapter(arrayAdapter);
+
 
 
     }
