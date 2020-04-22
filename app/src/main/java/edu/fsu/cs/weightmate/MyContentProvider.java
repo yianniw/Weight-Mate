@@ -59,7 +59,7 @@ public class MyContentProvider extends ContentProvider {
         //public final static String DBNAME2 = "weightmateDB";
         private static final String SQL_CREATE_MAIN2 =
                 "CREATE TABLE " + TABLE_NAMESTABLE2 + "( " +
-                        COLUMN_USERNAME2 + " TEXT PRIMARY KEY, " + COLUMN_DAY2 + " TEXT, " +
+                        COLUMN_USERNAME2 + " TEXT, " + COLUMN_DAY2 + " TEXT, " +
                         COLUMN_MEALNAME2 + " TEXT, " + COLUMN_CALORIES2 + " DOUBLE, " + COLUMN_PROTEIN2 + " DOUBLE,  "
                         + COLUMN_CARBS2 + " DOUBLE, " + COLUMN_FAT2 + " DOUBLE)";
 
@@ -71,7 +71,7 @@ public class MyContentProvider extends ContentProvider {
         protected static final class MainDatabaseHelper extends SQLiteOpenHelper {
 
             MainDatabaseHelper(Context context) {
-                super(context, DBNAME, null, 4);
+                super(context, DBNAME, null, 5);
             }
             @Override
             public void onCreate(SQLiteDatabase db) {
