@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import android.widget.SimpleCursorAdapter;
 
 public class ListMealActivity extends AppCompatActivity {
 
@@ -57,9 +58,9 @@ public class ListMealActivity extends AppCompatActivity {
         remainingFatView = findViewById(R.id.listMealTotalFat2);
 
         double calConsumed = 0;
-        int proteinConsumed = 0;
-        int carbsConsumed = 0;
-        int fatConsumed = 0;
+        double proteinConsumed = 0;
+        double carbsConsumed = 0;
+        double fatConsumed = 0;
 
         //Here is where we would import today's total and calculate the remainder using
         //User Information, for now we will use placeholders until other components are
@@ -89,34 +90,50 @@ public class ListMealActivity extends AppCompatActivity {
         mSelectionClause = MyContentProvider.COLUMN_USERNAME2 + " = ?  AND " +  MyContentProvider.COLUMN_DAY2 + " = ? ";
          mSelectionArgs = new String[] {SessionUtil.getSessionID(this), date};
 
-
-
         //Add up the total calories, protein, fat, carbs eaten from all the meals for the day,
         //Then we will subtract them from our above totals
 
       Cursor cursor2 = getContentResolver().query(
               MyContentProvider.CONTENT_URI_MEAL, mProjection,
-               mSelectionClause,
+              mSelectionClause,
                mSelectionArgs, null);
 
 
-         while(cursor.moveToNext())
-        {
-            calConsumed += cursor.getColumnIndex(MyContentProvider.COLUMN_CALORIES2);
-           proteinConsumed += cursor.getColumnIndex(MyContentProvider.COLUMN_PROTEIN2);
-            carbsConsumed += cursor.getColumnIndex(MyContentProvider.COLUMN_CARBS2);
-            fatConsumed += cursor.getColumnIndex(MyContentProvider.COLUMN_FAT2);
 
+        while(cursor2.moveToNext())
+             {
+                 calConsumed += cursor2.getDouble(cursor2.getColumnIndex(MyContentProvider.COLUMN_CALORIES2));
+                 proteinConsumed += cursor2.getDouble(cursor2.getColumnIndex(MyContentProvider.COLUMN_PROTEIN2));
+                 carbsConsumed += cursor2.getDouble(cursor2.getColumnIndex(MyContentProvider.COLUMN_CARBS2));
+                 fatConsumed += cursor2.getDouble(cursor2.getColumnIndex(MyContentProvider.COLUMN_FAT2));
+             }
+
+        //Display these below
+        double calRemaining = Double.parseDouble(calorieText) - calConsumed;
+        double proteinRemaining = Double.parseDouble(protienText) - proteinConsumed;
+        double carbsRemaining = Double.parseDouble(carbText) - carbsConsumed;
+        double fatRemaining = Double.parseDouble(fatText) - fatConsumed;
+
+        if(calRemaining < 0)
+        {
+            calRemaining = 0;
         }
 
 
+        if(proteinRemaining < 0)
+        {
+            proteinRemaining = 0;
+        }
 
-        //Display these below
-       double calRemaining = Double.parseDouble(calorieText) - calConsumed;
-        int proteinRemaining = Integer.parseInt(protienText) - proteinConsumed;
-        int carbsRemaining = Integer.parseInt(carbText) - carbsConsumed;
-       int fatRemaining = Integer.parseInt(fatText) - fatConsumed;
+        if(carbsRemaining < 0)
+        {
+            carbsRemaining = 0;
+        }
 
+        if(fatRemaining < 0)
+        {
+            fatRemaining = 0;
+        }
 
         //Now assign our values to the textview's
        totalCaloriesView.setText(String.valueOf(calConsumed));
@@ -130,31 +147,19 @@ public class ListMealActivity extends AppCompatActivity {
         remainingFatView.setText(String.valueOf(fatRemaining));
 
 
+        cursor = getContentResolver().query(MyContentProvider.CONTENT_URI_MEAL, null, null, null, null);
 
-        listView = (ListView)findViewById(R.id.listMealListView);
-
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("Breakfast");
-        arrayList.add("400 Calories");
-        arrayList.add("15g Protein");
-        arrayList.add("12g Carbs");
-        arrayList.add("13g Fat");
-
-        arrayList.add("Lunch");
-        arrayList.add("600 Calories");
-        arrayList.add("20g Protein");
-        arrayList.add("18g Carbs");
-        arrayList.add("15g Fat");
-
-        arrayList.add("Dinner");
-        arrayList.add("900 Calories");
-        arrayList.add("35g Protein");
-        arrayList.add("32g Carbs");
-        arrayList.add("23g Fat");
+        listView = (ListView) findViewById(R.id.listMealListView);
 
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayList);
-        listView.setAdapter(arrayAdapter);
+        String[] listColumn = new String[] { MyContentProvider.COLUMN_MEALNAME2, MyContentProvider.COLUMN_CALORIES2,
+                                                MyContentProvider.COLUMN_PROTEIN2, MyContentProvider.COLUMN_CARBS2, MyContentProvider.COLUMN_FAT  };
+        int [] listItems = new int[] { R.id.mealName, R.id.mealCalories, R.id.mealProtein, R.id.mealCarbs, R.id.mealFat };
+        //SimpleCursorAdapter cursorAdapt = new SimpleCursorAdapter(this, R.layout.activity_list_meal, cursor,
+                                                            // listColumn, listItems  );
+
+
+       //listView.setAdapter(cursorAdapt);
 
 
     }
