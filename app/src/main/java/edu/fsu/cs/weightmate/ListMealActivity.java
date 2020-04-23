@@ -184,6 +184,8 @@ public class ListMealActivity extends AppCompatActivity {
                 s = s + "Protein: " + Double.toString(mCursor.getDouble(4)) + "\n";
                 s = s + "Carbs: " + Double.toString(mCursor.getDouble(5)) + "\n";
                 s = s + "Fat: " + Double.toString(mCursor.getDouble(6)) + "\n";
+                s = s+ "Date: " + mCursor.getString(1) + "\n";
+
                 meallist.add(s);
             }
         }
