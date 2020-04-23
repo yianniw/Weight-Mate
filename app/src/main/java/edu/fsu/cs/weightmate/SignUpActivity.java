@@ -1,13 +1,20 @@
 package edu.fsu.cs.weightmate;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.graphics.Color;
+import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.net.Uri;
 import android.database.Cursor;
@@ -260,6 +267,29 @@ public class SignUpActivity extends AppCompatActivity {
                 mNewUri = getContentResolver().insert(
                       Uri.parse("content://edu.fsu.cs.weightmate.provider/userstable"), mNewValues);
 
+
+                //-----Notification-----
+
+                // Set up Notification after signing up
+//                NotificationManager nm;
+//                nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//                Intent notificationIntent = new Intent(getApplicationContext(), SignUpActivity.class);
+//                PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent,  PendingIntent.FLAG_UPDATE_CURRENT);
+//                Notification.Builder builder = new Notification.Builder( this);
+//
+//                // Build notification before sending
+//                String notifTitle = "Welcome to WeightMate!";
+//                builder.setContentTitle(notifTitle);
+//                builder.setSmallIcon(R.mipmap.ic_launcher);
+//                builder.setWhen(System.currentTimeMillis());
+//                builder.setContentIntent(contentIntent);
+//                builder.setAutoCancel(false);
+//                builder.setOnlyAlertOnce(true);
+//                // Send notification
+//                nm.notify(1, builder.build());
+
+
+                // -----Start Session-----
                 SessionUtil.startSession(this, EmailForm.getText().toString().trim());
                 Intent intent = new Intent(SignUpActivity.this, ProfileActivity.class);
                 startActivity(intent);
@@ -271,6 +301,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
 }
+
 
     //Parameters: age, weight(in pounds), height in feet, height in inches, gender (Male or Female string),
     //Activity level (string containing Sedentary, Low Active, Active, or Very Active),

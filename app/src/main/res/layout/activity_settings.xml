@@ -18,32 +18,6 @@
             android:showDividers="middle">
 
             <!-- Notifications -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/settings_notify_layout"
-                android:layout_width="match_parent"
-                android:layout_height="60dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:text="@string/settings_notifications"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <CheckBox
-                    android:id="@+id/settings_notify_checkbox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:clickable="false"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- Units -->
             <androidx.constraintlayout.widget.ConstraintLayout
