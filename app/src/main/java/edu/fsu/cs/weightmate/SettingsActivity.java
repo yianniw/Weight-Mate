@@ -24,8 +24,8 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     public static final String UNIT_KEY = "unitKey"; // value = int
 
     // UI
-    private ConstraintLayout notifyLayout;
-    private CheckBox notifyCheckbox;
+//    private ConstraintLayout notifyLayout;
+//    private CheckBox notifyCheckbox;
     private ConstraintLayout unitLayout;
     private Spinner unitSpinner;
     private ConstraintLayout deleteLayout;
@@ -47,9 +47,9 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
      */
     public void onClick(View v) {
         switch(v.getId()) {
-            case R.id.settings_notify_layout:
-                notifyCheckbox.setChecked(!notifyCheckbox.isChecked());
-                break;
+//            case R.id.settings_notify_layout:
+//                notifyCheckbox.setChecked(!notifyCheckbox.isChecked());
+//                break;
             case R.id.settings_units_layout:
                 unitSpinner.performClick();
                 break;
@@ -65,15 +65,15 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
     private void setupUI() {
         // prepare UI
-        notifyLayout = (ConstraintLayout)findViewById(R.id.settings_notify_layout);
-        notifyCheckbox = (CheckBox)findViewById(R.id.settings_notify_checkbox);
+//        notifyLayout = (ConstraintLayout)findViewById(R.id.settings_notify_layout);
+//        notifyCheckbox = (CheckBox)findViewById(R.id.settings_notify_checkbox);
         unitLayout = (ConstraintLayout)findViewById(R.id.settings_units_layout);
         unitSpinner = (Spinner)findViewById(R.id.settings_units_spinner);
         deleteLayout = (ConstraintLayout)findViewById(R.id.settings_delete_layout);
         confirmLayout = (ConstraintLayout)findViewById(R.id.settings_confirm_layout);
 
         // setup onClick Listeners
-        notifyLayout.setOnClickListener(this);
+//        notifyLayout.setOnClickListener(this);
         unitLayout.setOnClickListener(this);
         deleteLayout.setOnClickListener(this);
         confirmLayout.setOnClickListener(this);
@@ -84,20 +84,20 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
      */
     private void setupPrefs() {
         sharedPreferences = getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
-        if(sharedPreferences.contains(NOTIFICATION_KEY)) {
-            notifyCheckbox.setChecked(sharedPreferences.getBoolean(NOTIFICATION_KEY, true));
-        }
+//        if(sharedPreferences.contains(NOTIFICATION_KEY)) {
+//            notifyCheckbox.setChecked(sharedPreferences.getBoolean(NOTIFICATION_KEY, true));
+//        }
         if(sharedPreferences.contains(UNIT_KEY)) {
             unitSpinner.setSelection(sharedPreferences.getInt(UNIT_KEY, 0));
         }
     }
 
     private void savePrefs() {
-        boolean notifications = notifyCheckbox.isChecked();
+//        boolean notifications = notifyCheckbox.isChecked();
         int units = unitSpinner.getSelectedItemPosition();
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(NOTIFICATION_KEY, notifications);
+//        editor.putBoolean(NOTIFICATION_KEY, notifications);
         editor.putInt(UNIT_KEY, units);
         editor.apply();
     }
