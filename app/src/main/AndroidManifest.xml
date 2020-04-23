@@ -14,6 +14,11 @@
         <activity android:name=".SettingsActivity" />
 
         <activity android:name=".SignUpActivity" />
+        <receiver android:name=".SignUpActivity$DownloadCancelReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="Signed_Up" />
+            </intent-filter>
+        </receiver>
 
         <activity android:name=".AddMealActivity" />
         <activity android:name=".LoginPage" />

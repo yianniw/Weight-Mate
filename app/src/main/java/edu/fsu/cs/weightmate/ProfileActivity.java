@@ -105,11 +105,13 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
                 null
         );
         cursor.moveToFirst();
+        if (cursor != null) {
 
-        // Set texts to query results
-        profileName.setText(cursor.getString(cursor.getColumnIndex(MyContentProvider.COLUMN_NAME)));
-        currentWeight.setText(cursor.getString(cursor.getColumnIndex(MyContentProvider.COLUMN_WEIGHT)));
-        goalWeight.setText(cursor.getString(cursor.getColumnIndex(MyContentProvider.COLUMN_GWEIGHT)));
+            // Set texts to query resultsz
+            profileName.setText(cursor.getString(cursor.getColumnIndex(MyContentProvider.COLUMN_NAME)));
+            currentWeight.setText(cursor.getString(cursor.getColumnIndex(MyContentProvider.COLUMN_WEIGHT)));
+            goalWeight.setText(cursor.getString(cursor.getColumnIndex(MyContentProvider.COLUMN_GWEIGHT)));
+        }
 
         unit1.setText(R.string.units_freedom);
         unit2.setText(R.string.units_freedom);
